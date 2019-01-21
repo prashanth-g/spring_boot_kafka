@@ -2,10 +2,7 @@ package com.prashanth.spring.boot.kafka.controller;
 
 import com.prashanth.spring.boot.kafka.producer.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/kafka")
@@ -18,8 +15,9 @@ public class KafkaController {
         this.producer = producer;
     }
 
-    @PostMapping(value = "/publish")
-    public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
-        this.producer.sendMessage(message);
+    @GetMapping(value = "/publish/{channel}")
+    public String sendMessageToKafkaTopic(@PathVariable("channel") String channel) {
+        this.producer.sendMessage(channel);
+        return "Published!";
     }
 }
