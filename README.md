@@ -8,8 +8,14 @@ Step 2: Start Kafka server
     
 Step 3: Start spring_boot_kafka
 
+    $ kafka-console-consumer --bootstrap-server localhost:9092 --topic channel --from-beginning
+
+Step 4: Start spring_boot_kafka
+
     $ gradle bootRun
     
 Step 4: Test Kafka
 
-    $ curl -X POST -F 'message=kafka' http://localhost:9000/kafka/publish
+    $ curl http://localhost:9000/kafka/publish/pewdiepie
+    
+    Messages will be printed in kafka-console-consumer
