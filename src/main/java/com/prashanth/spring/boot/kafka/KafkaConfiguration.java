@@ -17,10 +17,13 @@ import java.util.Map;
 @Configuration
 public class KafkaConfiguration {
 
+    @Value(value = "${spring.kafka.consumer.bootstrap-servers}")
+    private String bootstrapAddress;
+
     @Bean
     public ProducerFactory<String, Channel> producerFactory() {
         Map<String, Object> config = new HashMap<>();
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(config);
