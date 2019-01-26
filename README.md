@@ -19,3 +19,5 @@ Step 4: Test Kafka
     $ curl http://localhost:9000/kafka/publish/pewdiepie
     
     Messages will be printed in kafka-console-consumer
+    
+Note: Check Kafka configuration in resources/application.properties
